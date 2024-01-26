@@ -12,9 +12,19 @@
       <h2>Items</h2>
       <ul class="list-group mb-4">
         {% for todoItem in items %}
-          <li>{{todoItem.title}} - {{todoItem.status}}</li>
+          <li class="list-group-item">{{todoItem.title}} - {{todoItem.status}}</li>
         {% endfor %}
       </ul>
     </div>
+  </div>
+
+  <div class="row">
+    <form action="{{ url_for('add_todo_item') }}" method="post" class="col-md-12">
+        <div class="form-group">
+            <label>Enter a new task: </label>
+            <input type="text" name="todoItemTitle" placeholder="Enter task" class="form-control"> 
+        </div>
+        <button type="submit" class="btn btn-primary">Add Task</button>
+    </form>
   </div>
 {% endblock %}
