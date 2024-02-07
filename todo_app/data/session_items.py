@@ -67,3 +67,18 @@ def save_item(item):
     session['items'] = updated_items
 
     return item
+
+def mark_item_as_complete(id):
+    """
+    Marks an item with the given id as completed. If no item exists with the given id, None is returned.
+
+    Args:
+        id: The ID of the item.
+    """
+    item = get_item(id)
+
+    if item:
+        item['status'] = 'Completed'
+        save_item(item)
+
+    return item
