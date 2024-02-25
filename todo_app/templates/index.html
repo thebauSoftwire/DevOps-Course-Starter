@@ -1,30 +1,45 @@
-{% extends "layout.html" %}
-{% block title %}To-Do App{% endblock %}
+{% extends "layout.html" %} {% block title %}To-Do App{% endblock %} {% block
+content %}
+<div class="jumbotron">
+  <h1 class="display-4">To-Do App</h1>
+  <p class="lead">Just another to-do app.</p>
+</div>
 
-{% block content %}
-  <div class="jumbotron">
-    <h1 class="display-4">To-Do App</h1>
-    <p class="lead">Just another to-do app.</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2>Items</h2>
+    <ul class="list-group mb-4">
+      {% for todoItem in items %}
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        {{todoItem.name}} - {{todoItem.status}} {% if todoItem.status != 'Done'
+        %}
+        <form
+          action="{{ url_for('complete_todo_item', item_id=todoItem.id) }}"
+          method="post"
+        >
+          <button type="submit" class="btn btn-outline-success">Done</button>
+        </form>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Items</h2>
-      <ul class="list-group mb-4">
-        {% for todoItem in items %}
-          <li class="list-group-item">{{todoItem.title}} - {{todoItem.status}}</li>
-        {% endfor %}
-      </ul>
+<div class="row">
+  <form action="{{ url_for('add_todo_item') }}" method="post" class="col-md-12">
+    <div class="form-group">
+      <label>Enter a new task: </label>
+      <input
+        type="text"
+        name="todoItemTitle"
+        placeholder="Enter task"
+        class="form-control"
+      />
     </div>
-  </div>
-
-  <div class="row">
-    <form action="{{ url_for('add_todo_item') }}" method="post" class="col-md-12">
-        <div class="form-group">
-            <label>Enter a new task: </label>
-            <input type="text" name="todoItemTitle" placeholder="Enter task" class="form-control"> 
-        </div>
-        <button type="submit" class="btn btn-primary">Add Task</button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-primary">Add Task</button>
+  </form>
+</div>
 {% endblock %}

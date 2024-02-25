@@ -58,3 +58,21 @@ def get_items():
 
     return cards
 
+def  complete_item(item_id):
+    """
+    Marks an item with the associated ID as "Done".
+    """
+    url = f"https://api.trello.com/1/cards/{item_id}"
+
+    request_params = {
+        'key': os.getenv("TRELLO_API_KEY"),
+        'token': os.getenv("TRELLO_API_TOKEN"),
+        'idList': os.getenv("TRELLO_DONE_LIST_ID")
+    }
+
+    requests.request(
+        "PUT",
+        url=url,
+        params=request_params
+    )
+    

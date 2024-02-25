@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from todo_app.data.session_items import get_items, add_item
+from todo_app.data.trello_items import get_items, add_item, complete_item
 
 from todo_app.flask_config import Config
 
@@ -16,4 +16,9 @@ def index():
 def add_todo_item():
     title = request.form.get('todoItemTitle')
     add_item(title)
+    return redirect(url_for('index'))
+
+@app.route('/complete-item/<item_id>', methods=["POST"])
+def complete_todo_item(item_id):
+    complete_item(item_id)
     return redirect(url_for('index'))
