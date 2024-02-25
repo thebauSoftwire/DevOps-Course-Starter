@@ -1,5 +1,6 @@
 import os
 import requests
+from todo_app.data.item import Item
 
 def add_item(title):
     """
@@ -50,11 +51,7 @@ def get_items():
     cards = []
     for trello_list in response_json:
         for card in trello_list['cards']:
-            cards.append({
-                'id': card['id'],
-                'name': card['name'],
-                'status': trello_list['name']
-            })
+            cards.append(Item.from_trello_card(card, trello_list))
 
     return cards
 
