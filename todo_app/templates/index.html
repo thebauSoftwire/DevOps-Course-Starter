@@ -13,13 +13,21 @@ content %}
       <li
         class="list-group-item d-flex justify-content-between align-items-center"
       >
-        {{todoItem.name}} - {{todoItem.status}} {% if todoItem.status != 'Done'
-        %}
+        <div class="d-flex align-items-center">
+          {% if todoItem.status == 'Done' %}
+          <span class="badge badge-success mr-1">{{todoItem.status}}</span>
+          {% else %}
+          <span class="badge badge-secondary mr-1">{{todoItem.status}}</span>
+          {% endif %} {{todoItem.name}}
+        </div>
+        {% if todoItem.status != 'Done' %}
         <form
           action="{{ url_for('complete_todo_item', item_id=todoItem.id) }}"
           method="post"
         >
-          <button type="submit" class="btn btn-outline-success">Done</button>
+          <button type="submit" class="btn btn-outline-success btn-sm">
+            Mark as done
+          </button>
         </form>
         {% endif %}
       </li>
