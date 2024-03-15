@@ -1,4 +1,4 @@
-class ViewModel:
+class TodoListViewModel:
     def __init__(self, items):
         self._items = items
 
