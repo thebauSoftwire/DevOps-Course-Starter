@@ -1,5 +1,4 @@
-{% extends "layout.html" %} {% block title %}To-Do App{% endblock %} {% block
-content %}
+{% extends "layout.html" %} {% block title %}To-Do App{% endblock %} {% block content %}
 <div class="jumbotron">
   <h1 class="display-4">To-Do App</h1>
   <p class="lead">Just another to-do app.</p>
@@ -9,10 +8,8 @@ content %}
   <div class="col-md-12">
     <h2>Items</h2>
     <ul class="list-group mb-4">
-      {% for todoItem in items %}
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
+      {% for todoItem in view_model.items %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center">
           {% if todoItem.status == 'Done' %}
           <span class="badge badge-success mr-1">{{todoItem.status}}</span>
@@ -21,13 +18,8 @@ content %}
           {% endif %} {{todoItem.name}}
         </div>
         {% if todoItem.status != 'Done' %}
-        <form
-          action="{{ url_for('complete_todo_item', item_id=todoItem.id) }}"
-          method="post"
-        >
-          <button type="submit" class="btn btn-outline-success btn-sm">
-            Mark as done
-          </button>
+        <form action="{{ url_for('complete_todo_item', item_id=todoItem.id) }}" method="post">
+          <button type="submit" class="btn btn-outline-success btn-sm">Mark as done</button>
         </form>
         {% endif %}
       </li>
@@ -40,12 +32,7 @@ content %}
   <form action="{{ url_for('add_todo_item') }}" method="post" class="col-md-12">
     <div class="form-group">
       <label>Enter a new task: </label>
-      <input
-        type="text"
-        name="todoItemTitle"
-        placeholder="Enter task"
-        class="form-control"
-      />
+      <input type="text" name="todoItemTitle" placeholder="Enter task" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Add Task</button>
   </form>
