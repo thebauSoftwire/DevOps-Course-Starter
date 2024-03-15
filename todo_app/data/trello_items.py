@@ -10,7 +10,7 @@ def add_item(title):
         title: The title of the item.
 
     """
-    url = f"{os.getenv("TRELLO_API_BASE_URL")}/cards"
+    url = f"{os.getenv('TRELLO_API_BASE_URL')}/cards"
 
     request_params = {
         'idList': os.getenv("TRELLO_TODO_LIST_ID"),
@@ -32,7 +32,7 @@ def get_items():
     Returns:
         list: The list of saved items.
     """
-    url = f"{os.getenv("TRELLO_API_BASE_URL")}/boards/{os.getenv("TRELLO_BOARD_ID")}/lists"
+    url = f"{os.getenv('TRELLO_API_BASE_URL')}/boards/{os.getenv('TRELLO_BOARD_ID')}/lists"
 
     request_params = {
         'key': os.getenv("TRELLO_API_KEY"),
