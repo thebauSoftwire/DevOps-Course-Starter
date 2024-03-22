@@ -8,6 +8,7 @@ class TodoListViewModel:
     
     @property
     def done_items(self):
+        print(self.items)
         complete_items = filter(lambda item: item.status == 'Done', self.items)
         return list(complete_items)
     

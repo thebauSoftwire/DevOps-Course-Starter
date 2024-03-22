@@ -11,6 +11,7 @@ app.config.from_object(Config())
 @app.route('/')
 def index():
     todoItems = get_items()
+    app.logger.info(todoItems)
     items_view_model = TodoListViewModel(todoItems)
     return render_template('index.html', view_model=items_view_model)
 
