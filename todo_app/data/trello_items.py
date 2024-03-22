@@ -42,7 +42,7 @@ def get_items():
     }
 
     response = requests.request(
-        "GET",
+        method="GET",
         url=url,
         params=request_params
     )
