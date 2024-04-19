@@ -2,12 +2,14 @@ import pytest
 from todo_app.view_models.todo_list_view_model import TodoListViewModel
 from todo_app.data.item import Item
 
-test_items = [
-    Item(1, 'some-name','To Do'),
-    Item(2, 'some-name','Done'),
-    Item(3, 'some-name','To Do'),
-    Item(4, 'some-name','Done'),
-]
+@pytest.fixture
+def test_items():
+    return [
+        Item(1, 'some-name','To Do'),
+        Item(2, 'some-name','Done'),
+        Item(3, 'some-name','To Do'),
+        Item(4, 'some-name','Done'),
+    ]
 
 def test_view_model_sets_items():
     items_view_model = TodoListViewModel(test_items)

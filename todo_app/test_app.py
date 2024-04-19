@@ -24,24 +24,28 @@ class StubResponse():
     def json(self):
         return self.fake_response_data
 
-# Stub replacement for requests.request(url)
-def getRequestStub(url, method='GET', params={}):
+def requestStub(url, method, params={}):
     test_board_id = os.environ.get('TRELLO_BOARD_ID')
     fake_response_data = None
-    if url == f'https://api.trello.com/1/boards/{test_board_id}/lists':
+    if url == f'{os.environ.get('TRELLO_API_BASE_URL')}/boards/{test_board_id}/lists':
         fake_response_data = [{
             'id': '123abc',
             'name': 'To Do',
             'cards': [{'id': '456', 'name': 'Test card'}]
         }]
         return StubResponse(fake_response_data)
-
-    raise Exception(f'Integration test did not expect URL "{url}"')
-
+    elif url == f'{os.environ.get('TRELLO_API_BASE_URL')}/cards':
+        fake_response_data = {
+            'id': '123abc',
+            'name': 'test task',
+        }
+        return StubResponse(fake_response_data)
+    else:
+        raise Exception(f'Integration test did not expect URL "{url}"')
 
 def test_index_page(monkeypatch, client):
-    # Replace requests.requests(url) with our own function
-    monkeypatch.setattr(requests, 'request', getRequestStub)
+    # Replace requests.request(url) with our own function
+    monkeypatch.setattr(requests, 'request', requestStub)
 
     # Make a request to our app's index page
     response = client.get('/')

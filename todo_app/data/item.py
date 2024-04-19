@@ -7,3 +7,6 @@ class Item:
     @classmethod
     def from_trello_card(cls, card, list):
         return cls(card['id'], card['name'], list['name'])
+
+    def __repr__(self):
+        return f'Ticket {self.id} is in status {self.status}'
