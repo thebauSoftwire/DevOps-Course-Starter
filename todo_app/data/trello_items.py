@@ -19,8 +19,10 @@ def add_item(title):
         'name': title
     }
 
+    print(url)
+
     requests.request(
-        "POST",
+        method="POST",
         url=url,
         params=request_params
     )
@@ -42,7 +44,7 @@ def get_items():
     }
 
     response = requests.request(
-        "GET",
+        method="GET",
         url=url,
         params=request_params
     )

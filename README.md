@@ -41,11 +41,13 @@ The `.env` file is used by flask to set environment variables when running `flas
 ## Running the App
 
 Once the all dependencies have been installed, start the Flask app in development mode within the Poetry environment by running:
+
 ```bash
 $ poetry run flask run
 ```
 
 You should see output similar to the following:
+
 ```bash
  * Serving Flask app 'todo_app/app'
  * Debug mode: on
@@ -56,4 +58,19 @@ Press CTRL+C to quit
  * Debugger is active!
  * Debugger PIN: 113-666-066
 ```
+
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Testing
+
+To run the tests, run:
+
+```bash
+$ poetry run pytest
+```
+
+To run pytest in a specific directory, provide the path:
+
+```bash
+$ poetry run pytest path/to/test
+```
