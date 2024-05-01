@@ -74,3 +74,14 @@ To run pytest in a specific directory, provide the path:
 ```bash
 $ poetry run pytest path/to/test
 ```
+
+## Provisioning a VM from an Ansible Control Node
+
+To run the app in a VM:
+
+1. Connect to your Control Node using `ssh USERNAME@IP-ADDRESS`
+2. Copy over contents of the ansible folder to your Control Node
+3. Add the IP address of your managed node under the `webservers` group in `ansible_inventory.ini`
+4. Run the playbook with `ansible-playbook ansible_playbook.yml -i ansible_inventory.ini`
+   - you will be prompted to enter the relevant details from your local .env file
+   - after successfully running the playbook, you should be able to run the app by entering `MANAGED-NODE-IP-ADDRESS:5000` in a browser
