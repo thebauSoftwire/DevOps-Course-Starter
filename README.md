@@ -61,6 +61,20 @@ Press CTRL+C to quit
 
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
+## Running with Docker
+
+To run the app in a docker container, run from the root directory of the project:
+
+```bash
+$ docker build --tag todo-app:dev .
+```
+
+then run:
+
+```bash
+$ docker run -p 5000:5000 --env-file .env --mount "type=bind,source=$(pwd)/todo_app,target=/opt/app/todo_app" todo-app:dev
+```
+
 ## Testing
 
 To run the tests, run:
