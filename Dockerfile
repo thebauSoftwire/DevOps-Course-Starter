@@ -20,9 +20,16 @@ FROM base as development
 ENV FLASK_DEBUG=true
 # Run app
 ENTRYPOINT poetry run flask run --host=0.0.0.0
+
 # ---------------------------------------------------------------
 
 FROM base as production
 ENV FLASK_DEBUG=false
 # Run app
 ENTRYPOINT poetry run flask run --host=0.0.0.0
+
+# ---------------------------------------------------------------
+
+FROM base as test
+ENV FLASK_DEBUG=false
+ENTRYPOINT poetry run pytest

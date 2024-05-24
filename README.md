@@ -95,6 +95,13 @@ To run pytest in a specific directory, provide the path:
 $ poetry run pytest path/to/test
 ```
 
+To run pytest in a container run:
+
+```bash
+$ docker build --target test --tag todo-app:test .
+$ docker run todo-app:test
+```
+
 ## Provisioning a VM from an Ansible Control Node
 
 To run the app in a VM:
