@@ -75,6 +75,12 @@ then run:
 $ docker run -p 5000:5000 --env-file .env --mount "type=bind,source=$(pwd)/todo_app,target=/opt/app/todo_app" todo-app:dev
 ```
 
+Alternatively, you can use docker compose to start the app in a container with:
+
+```bash
+$ docker compose up
+```
+
 ## Testing
 
 To run the tests, run:
