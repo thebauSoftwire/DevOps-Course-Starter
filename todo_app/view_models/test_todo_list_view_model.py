@@ -11,18 +11,18 @@ def test_items():
         Item(4, 'some-name','Done'),
     ]
 
-def test_view_model_sets_items():
+def test_view_model_sets_items(test_items):
     items_view_model = TodoListViewModel(test_items)
 
     assert items_view_model.items == test_items
 
-def test_view_model_returns_done_items():
+def test_view_model_returns_done_items(test_items):
     items_view_model = TodoListViewModel(test_items)
 
     assert len(items_view_model.done_items) == 2
     assert all([item.status == 'Done' for item in items_view_model.done_items])
 
-def test_view_model_returns_to_do_items():
+def test_view_model_returns_to_do_items(test_items):
     items_view_model = TodoListViewModel(test_items)
 
     assert len(items_view_model.to_do_items) == 2
