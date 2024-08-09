@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      target: development
+    ports:
+      - "5000:5000"
+    platform: linux/amd64
+    env_file:
+      - path: ./.env
+    volumes:
+      - type: bind
+        source: ./todo_app
+        target: "/opt/app/todo_app"

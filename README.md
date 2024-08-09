@@ -61,6 +61,26 @@ Press CTRL+C to quit
 
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
+## Running with Docker
+
+To run the app in a docker container, run from the root directory of the project:
+
+```bash
+$ docker build --tag todo-app:dev --target development .
+```
+
+then run:
+
+```bash
+$ docker run -p 5000:5000 --env-file .env --mount "type=bind,source=$(pwd)/todo_app,target=/opt/app/todo_app" todo-app:dev
+```
+
+Alternatively, you can use docker compose to start the app in a container with:
+
+```bash
+$ docker compose up
+```
+
 ## Testing
 
 To run the tests, run:
@@ -73,6 +93,13 @@ To run pytest in a specific directory, provide the path:
 
 ```bash
 $ poetry run pytest path/to/test
+```
+
+To run pytest in a container run:
+
+```bash
+$ docker build --target test --tag todo-app:test .
+$ docker run todo-app:test
 ```
 
 ## Provisioning a VM from an Ansible Control Node
