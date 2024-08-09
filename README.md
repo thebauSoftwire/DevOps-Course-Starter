@@ -66,7 +66,7 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 To run the app in a docker container, run from the root directory of the project:
 
 ```bash
-$ docker build --tag todo-app:dev .
+$ docker build --tag todo-app:dev --target development .
 ```
 
 then run:
