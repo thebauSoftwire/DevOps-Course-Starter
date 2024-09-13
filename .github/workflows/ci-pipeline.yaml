@@ -19,7 +19,7 @@ jobs:
     name: Publish to Docker Hub and deploy to Azure
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/ex9' }}
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
     steps:
       - uses: actions/checkout@v4
       - name: Login to Docker
