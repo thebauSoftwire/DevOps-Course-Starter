@@ -30,4 +30,4 @@ jobs:
       - name: Build image
         run: docker build --tag todo-app:prod --target production --platform linux/amd64 .
       - name: Publish to docker hub
-        run: docker push todo-app:prod
+        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod"
