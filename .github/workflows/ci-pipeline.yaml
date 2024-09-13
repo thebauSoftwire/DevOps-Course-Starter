@@ -31,3 +31,5 @@ jobs:
         run: docker build --tag ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod --target production --platform linux/amd64 .
       - name: Publish to docker hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:prod
+      - name: Trigger deployment to azure
+        run: curl -dH -X POST '${{ secrets.AZURE_APP_WEBHOOK }}'
