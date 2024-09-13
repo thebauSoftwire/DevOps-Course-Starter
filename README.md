@@ -112,3 +112,13 @@ To run the app in a VM:
 4. Run the playbook with `ansible-playbook ansible_playbook.yml -i ansible_inventory.ini`
    - you will be prompted to enter the relevant details from your local .env file
    - after successfully running the playbook, you should be able to run the app by entering `MANAGED-NODE-IP-ADDRESS:5000` in a browser
+
+## Building and pushing to docker hub
+
+To push to docker hub, do the following:
+
+```
+docker build --tag {docker_id}/todo-app:prod --target production --platform linux/amd64 .
+
+docker push {docker_id}/todo-app:prod
+```
